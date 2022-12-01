@@ -12,9 +12,7 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "prepare": "tsdx build"
   },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -32,22 +30,11 @@
     }
   },
   "module": "dist/sanity-analytics-dashboard-widgets.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/sanity-analytics-dashboard-widgets.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/sanity-analytics-dashboard-widgets.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "dependencies": {
     "@sanity/ui": "^1.0.0"
   },
   "devDependencies": {
     "@sanity/dashboard": "^3.0.0-v3-studio.8",
-    "@size-limit/preset-small-lib": "^8.1.0",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "husky": "^8.0.2",
@@ -55,7 +42,6 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "sanity": "^3.0.0",
-    "size-limit": "^8.1.0",
     "styled-components": "^5.3.6",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.1",
