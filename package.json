@@ -1,0 +1,68 @@
+{
+  "name": "@wrux/sanity-analytics-dashboard-widgets",
+  "author": "Callum Bonnyman",
+  "version": "0.1.0",
+  "license": "MIT",
+  "keywords": [
+    "sanity",
+    "dashboard",
+    "widget"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "public": true,
+  "engines": {
+    "node": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "module": "dist/sanity-analytics-dashboard-widgets.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/sanity-analytics-dashboard-widgets.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/sanity-analytics-dashboard-widgets.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "dependencies": {
+    "@sanity/ui": "^1.0.0"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "@sanity/dashboard": "^3.0.0-v3-studio.8",
+    "husky": "^8.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sanity": "^3.0.0",
+    "size-limit": "^8.1.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3"
+  },
+  "peerDependencies": {
+    "@sanity/dashboard": "^3.0.0-v3-studio.8",
+    "react": "^18",
+    "sanity": "^3.0.0"
+  }
+}
