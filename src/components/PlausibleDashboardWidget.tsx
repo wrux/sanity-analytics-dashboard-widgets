@@ -1,19 +1,23 @@
 import React from 'react';
-import { DashboardWidget, LayoutConfig } from '@sanity/dashboard';
 import { Text, useTheme } from '@sanity/ui';
-import { Frame } from '../components';
+import Frame from './Frame';
 
-export type PlausibleWidgetConfig = {
+const widgetTitle = 'Plausible Analytics';
+
+export type PlausibleDashboardWidgetConfig = {
   auth: string;
   domain: string;
 };
 
-const Widget = ({ auth, domain }: PlausibleWidgetConfig) => {
+export const PlausibleDashboardWidget = ({
+  auth,
+  domain,
+}: PlausibleDashboardWidgetConfig) => {
   const theme = useTheme();
 
   if (!auth && !domain) {
     return (
-      <Frame>
+      <Frame title={widgetTitle}>
         <Text size={1}>Please configure the widget</Text>
       </Frame>
     );
@@ -32,8 +36,9 @@ const Widget = ({ auth, domain }: PlausibleWidgetConfig) => {
   );
 
   return (
-    <Frame>
+    <Frame title={widgetTitle}>
       <iframe
+        title={widgetTitle}
         plausible-embed="true"
         src={iframeUrl.toString()}
         loading="lazy"
@@ -47,17 +52,3 @@ const Widget = ({ auth, domain }: PlausibleWidgetConfig) => {
     </Frame>
   );
 };
-
-export type plausibleWidgetConfig = PlausibleWidgetConfig & {
-  layout?: LayoutConfig;
-};
-
-export function plausibleWidget(
-  config: plausibleWidgetConfig
-): DashboardWidget {
-  return {
-    name: 'analytics-widget',
-    component: () => <Widget {...config} />,
-    layout: config.layout ?? { width: 'full' },
-  };
-}

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { DashboardWidget, LayoutConfig } from '@sanity/dashboard';
 import { Text } from '@sanity/ui';
-import { Frame } from '../components';
+import Frame from './Frame';
 
-export type FathomWidgetConfig = {
+const widgetTitle = 'Fathom Analytics';
+
+export type FathomDashboardWidgetConfig = {
   domain: string;
   password?: string;
   siteID: string;
@@ -19,7 +20,11 @@ async function digestMessage(message: string) {
   return hashHex;
 }
 
-const Widget = ({ domain, password, siteID }: FathomWidgetConfig) => {
+export const FathomDashboardWidget = ({
+  domain,
+  password,
+  siteID,
+}: FathomDashboardWidgetConfig) => {
   const [iframeUrl, setIframeUrl] = useState<string>();
 
   useEffect(() => {
@@ -36,16 +41,17 @@ const Widget = ({ domain, password, siteID }: FathomWidgetConfig) => {
 
   if (!siteID) {
     return (
-      <Frame>
+      <Frame title={widgetTitle}>
         <Text size={1}>Please configure the widget</Text>
       </Frame>
     );
   }
 
   return (
-    <Frame>
+    <Frame title={widgetTitle}>
       {iframeUrl ? (
         <iframe
+          title={widgetTitle}
           src={iframeUrl}
           loading="lazy"
           style={{
@@ -61,15 +67,3 @@ const Widget = ({ domain, password, siteID }: FathomWidgetConfig) => {
     </Frame>
   );
 };
-
-export type fathomWidgetConfig = FathomWidgetConfig & {
-  layout?: LayoutConfig;
-};
-
-export function fathomWidget(config: fathomWidgetConfig): DashboardWidget {
-  return {
-    name: 'analytics-widget',
-    component: () => <Widget {...config} />,
-    layout: config.layout ?? { width: 'full' },
-  };
-}
