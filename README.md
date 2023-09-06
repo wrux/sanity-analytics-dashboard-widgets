@@ -13,12 +13,6 @@ Install
 npm install --save @wrux/sanity-analytics-dashboard-widgets
 ```
 
-or
-
-```bash
-yarn add @wrux/sanity-analytics-dashboard-widgets
-```
-
 Ensure that you have followed install and usage instructions for @sanity/dashboard.
 
 ## Usage
